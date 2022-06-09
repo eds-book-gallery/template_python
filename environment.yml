@@ -5,5 +5,8 @@ channels:
 
 dependencies:
   - jupyter_contrib_nbextensions==0.5.1
-  # Add other packages here
-  # -
+  - xarray
+  - intake-esm
+  - cftime
+  - matplotlib
+  - cartopy
