@@ -24,7 +24,7 @@ jobs:
       # Render the notebook
       - name: Render the notebook
         run: |
-          docker run -it --rm -p 7777:8888 quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb ; cat CMIP6_example.ipynb" > tmp.ipynb
+          docker run --tty --rm -p 7777:8888 quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb ; cat CMIP6_example.ipynb" > tmp.ipynb
           cat tmp.ipynb | sed 1,2d > CMIP6_example.ipynb
       - name: Commit
         run: |
