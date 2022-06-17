@@ -1,0 +1,41 @@
+name: render
+
+on:
+  # Trigger the workflow on push to main/master branch
+  push:
+    branches:
+      - master
+      - main
+
+# This job installs dependencies, build the jupyter notebook, and pushes it to `render`, a new `branch`
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      # Render the notebook
+      - name: Render the notebook
+        run: |
+          docker run -it --rm -p 7777:8888 quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb ; cat CMIP6_example.ipynb" > tmp.ipynb
+          cat tmp.ipynb | sed 1,2d > CMIP6_example.ipynb
+      - name: Commit
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git rm \* ':!CMIP6_example.ipynb'
+          git add ${{steps.config_file.outputs.prop}}
+          git commit -m 'update' 
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         branch: render
+         force: true
