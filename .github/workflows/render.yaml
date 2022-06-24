@@ -5,13 +5,7 @@ on:
     workflows: ["Build and push container image"]
     types:
       - completed
-  # Trigger the workflow on push to main/master branch
-  push:
-    branches:
-      - master
-      - main
 
-      
 # This job installs dependencies, build the jupyter notebook, and pushes it to `render`, a new `branch`
 jobs:
   build:
