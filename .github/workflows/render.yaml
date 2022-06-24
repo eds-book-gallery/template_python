@@ -32,9 +32,9 @@ jobs:
             options: --user root -v ${{ github.workspace }}:/tmp
             shell: bash
             run: |
-                jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb
+                jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --execute CMIP6_example.ipynb --output CMIP6_example2.ipynb
                 ls /tmp
-                cp CMIP6_example.ipynb /tmp
+                cp CMIP6_example2.ipynb /tmp
                 ls /tmp
 #      - name: Render the notebook
 #        run: |
@@ -44,9 +44,9 @@ jobs:
           ls
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git rm \* ':!CMIP6_example.ipynb'
-          git add ${{steps.config_file.outputs.prop}}
-          git commit -m 'update' 
+          git rm \* ':!CMIP6_example2.ipynb'
+          git add CMIP6_example2
+          git commit -m 'update'
       - name: Push
         uses: ad-m/github-push-action@master
         with:
