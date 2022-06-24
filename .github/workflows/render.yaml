@@ -21,32 +21,30 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-    container: 
-        image: quay.io/environmental_ds_book/test2i2c:latest
     defaults:
       run:
         shell: bash -l {0}
     steps:
       - uses: actions/checkout@v2
       # Render the notebook
-      - name: Commit
-        run: |
-          jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git rm \* ':!CMIP6_example.ipynb'
-          git add CMIP6_example.ipynb
-          git commit -m 'update' 
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+            image: quay.io/environmental_ds_book/test2i2c:latest
+            options: -v ${{ github.workspace }}:/tmp
+            run: |
+                jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb
+                cp CMIP6_example.ipynb /tmp
 #      - name: Render the notebook
 #        run: |
 #          docker run -t --rm -p 7777:8888 -v "${PWD}":/home/jovyan/work quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --execute CMIP6_example.ipynb --output-dir=/home/jovyan/work"
-#      - name: Commit
-#        run: |
-#          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-#          git config --local user.name "github-actions[bot]"
-#          git rm \* ':!CMIP6_example.ipynb'
-#          git add ${{steps.config_file.outputs.prop}}
-#          git commit -m 'update' 
+      - name: Commit
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git rm \* ':!CMIP6_example.ipynb'
+          git add ${{steps.config_file.outputs.prop}}
+          git commit -m 'update' 
       - name: Push
         uses: ad-m/github-push-action@master
         with:
