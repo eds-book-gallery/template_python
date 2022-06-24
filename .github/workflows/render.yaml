@@ -1,15 +1,16 @@
 name: render
 
 on:
+  workflow_run:
+    workflows: ["Build and push container image"]
+    types:
+      - completed
   # Trigger the workflow on push to main/master branch
   push:
     branches:
       - master
       - main
-  workflow_run:
-    workflows: ["Build and push container image"]
-    types:
-      - completed
+
       
 # This job installs dependencies, build the jupyter notebook, and pushes it to `render`, a new `branch`
 jobs:
@@ -36,8 +37,8 @@ jobs:
                 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                 git config user.name "github-actions[bot]"
                 git rm \* ':!CMIP6_example.ipynb'
-                git add ${{steps.config_file.outputs.prop}}
-                git commit -m 'update' 
+                git add CMIP6_example.ipynb
+                git commit -m 'update'
 #      - name: Render the notebook
 #        run: |
 #          docker run -t --rm -p 7777:8888 -v "${PWD}":/home/jovyan/work quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --execute CMIP6_example.ipynb --output-dir=/home/jovyan/work"
