@@ -33,12 +33,14 @@ jobs:
             image: quay.io/environmental_ds_book/test2i2c:latest
             options: -v ${{ github.workspace }}:/tmp
             run: |
+                cd /tmp
                 jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb
                 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                 git config user.name "github-actions[bot]"
                 git rm \* ':!CMIP6_example.ipynb'
                 git add CMIP6_example.ipynb
                 git commit -m 'update'
+                ls /tmp
 #      - name: Render the notebook
 #        run: |
 #          docker run -t --rm -p 7777:8888 -v "${PWD}":/home/jovyan/work quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --execute CMIP6_example.ipynb --output-dir=/home/jovyan/work"
