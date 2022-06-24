@@ -1,14 +1,10 @@
 name: render
 
-#on:
-#  workflow_run:
-#    workflows: ["Build and push container image"]
-#    types:
-#      - completed
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Build and push container image"]
+    types:
+      - completed
       
 # This job installs dependencies, build the jupyter notebook, and pushes it to `render`, a new `branch`
 jobs:
