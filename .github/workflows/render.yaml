@@ -31,12 +31,11 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
             image: quay.io/environmental_ds_book/test2i2c:latest
-            options: -v ${{ github.workspace }}:/tmp/project
+            options: --user root -v ${{ github.workspace }}:/tmp
             shell: bash
             run: |
                 jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb
-                chmod 777 /tmp/project
-                cp CMIP6_example.ipynb /tmp/project
+                cp CMIP6_example.ipynb /tmp
 #      - name: Render the notebook
 #        run: |
 #          docker run -t --rm -p 7777:8888 -v "${PWD}":/home/jovyan/work quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --execute CMIP6_example.ipynb --output-dir=/home/jovyan/work"
