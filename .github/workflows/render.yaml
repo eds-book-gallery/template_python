@@ -29,8 +29,9 @@ jobs:
             shell: bash
             run: |
                 jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb
-                ls
+                ls /tmp
                 cp CMIP6_example.ipynb /tmp
+                ls /tmp
 #      - name: Render the notebook
 #        run: |
 #          docker run -t --rm -p 7777:8888 -v "${PWD}":/home/jovyan/work quay.io/environmental_ds_book/test2i2c:latest bash -c "jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --execute CMIP6_example.ipynb --output-dir=/home/jovyan/work"
