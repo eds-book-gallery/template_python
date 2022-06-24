@@ -32,7 +32,7 @@ jobs:
             options: --user root -v ${{ github.workspace }}:/tmp
             shell: bash
             run: |
-                jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --execute CMIP6_example.ipynb
+                jupyter-nbconvert --to notebook --ExecutePreprocessor.kernel_name=python3 --inplace --execute CMIP6_example.ipynb
                 cp CMIP6_example.ipynb /tmp
 #      - name: Render the notebook
 #        run: |
