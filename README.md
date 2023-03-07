@@ -4,7 +4,7 @@ This is a template repository containing a Jupyter notebook with a `python` kern
 
 Please follow the instructions below to prepare your notebook repository to publish in EDS book. 
 
-Feel free to report bugs in the main EDS book repo ([here]((https://github.com/alan-turing-institute/environmental-ds-book/issues/new/choose))).
+Feel free to report bugs in the main EDS book repo ([here](https://github.com/alan-turing-institute/environmental-ds-book/issues/new/choose)).
 
 ## How to use the template
 
