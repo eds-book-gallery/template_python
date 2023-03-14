@@ -20,7 +20,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-EDS book notebook repositories includes derivatives of GitHub Actions workflows of 2i2c hub user images template (https://github.com/2i2c-org/hub-user-image-template/tree/main/.github/workflows, in particular binder, build and test YAML files). These workflow files are licensed as follows:
+EDS book notebook repositories includes derivatives of 2i2c hub user images template,
+in particular binder, build and test YAML files located in a public GitHub repo,
+https://github.com/2i2c-org/hub-user-image-template/tree/main/.github/workflows.
+These workflow files are licensed as follows:
 
     BSD 3-Clause License
 
