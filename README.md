@@ -84,3 +84,5 @@ EiC will open a PRE-REVIEW issue where a handling editor and authors suggest rev
 
 We suggest to read further details of the REVIEW process in the publishing guidelines (see [here](https://github.com/alan-turing-institute/environmental-ds-book/blob/master/book/publishing/guidelines/guidelines-authors.md)). 
 
+## Credits
+This template uses [2i2c’s hub-user-image-template](https://github.com/2i2c-org/hub-user-image-template) released under BSD-3-Clause license. We also acknowledge the [static-export-template](https://github.com/JuliaPluto/static-export-template) of Julia Pluto, in particular the well-documented README file.
