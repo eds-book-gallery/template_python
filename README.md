@@ -28,7 +28,7 @@ Go to the Settings tab of your repository, then click on Actions in the left sid
 
 <img src=".github/img/step2.png" width="1920" />
 
-Please ignore other failing GitHub actions in the forked repository, as they are not relevant for the preparation stage of the notebook
+Please ignore other failing GitHub actions in the forked repository, as they are not relevant for the preparation stage of the notebook.
 
 ### :point_right: Step 3: Clone and edit 
 
